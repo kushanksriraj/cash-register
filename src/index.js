@@ -4,6 +4,7 @@ const cashDivRef = document.querySelector("#cash-div");
 const computeBtn = document.querySelector("#compute");
 const cashRef = document.querySelector("#cash");
 const moneyRef = document.querySelector("#money");
+const resetBtn = document.querySelector("#reset");
 
 var bill = 0;
 var cash = 0;
@@ -31,7 +32,6 @@ function showNotes(noteCtr) {
 function compute(bill, cash) {
   money = cash - bill;
   var showMoney = money;
-  // console.log("Money : " + money);
 
   for (var i = 0; i < 7 && money > 0; i++) {
     while (money >= notes[i]) {
@@ -40,11 +40,6 @@ function compute(bill, cash) {
     }
   }
 
-  // for (var j = 0; j < 7; j++) {
-  //   if (noteCtr[j] > 0) {
-  //     console.log("Rs. " + notes[j] + " x " + noteCtr[j]);
-  //   }
-  // }
   if (showMoney > 0) {
     moneyRef.innerText = "₹" + showMoney;
     showNotes(noteCtr);
@@ -58,23 +53,30 @@ function billClickHandler() {
 
   if (bill <= 0) {
     alert("Please enter correct bill amount!");
-    // console.log("Please enter correct bill amount!");
   } else {
     cashDivRef.style.display = "inherit";
     computeBtn.style.display = "inherit";
     continueBtnRef.style.display = "none";
-    // console.log(bill);
+    resetBtn.style.display = "inherit";
   }
 }
 
 function cashClickHandler() {
   cash = Number(cashRef.value);
   bill = Number(billRef.value);
-  // console.log(cash);
   compute(bill, cash);
+}
+
+function resetClickHandler() {
+  document.querySelector("#output-div").style.display = "none";
+  computeBtn.style.display = "none";
+  cashDivRef.style.display = "none";
+  resetBtn.style.display = "none";
+  continueBtnRef.style.display = "inherit";
+  billRef.value = "";
+  cashRef.value = "";
 }
 
 continueBtnRef.addEventListener("click", billClickHandler);
 computeBtn.addEventListener("click", cashClickHandler);
-
-
+resetBtn.addEventListener("click", resetClickHandler);

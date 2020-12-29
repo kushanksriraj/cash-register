@@ -71,6 +71,11 @@ button {
   cursor: pointer;
 }
 
+#reset {
+  margin: auto;
+  margin-top: 1.5rem;
+}
+
 .output1 {
   text-align: center;
   width: 95%;
