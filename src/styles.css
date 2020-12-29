@@ -19,9 +19,6 @@ header {
   box-shadow: 5px 5px yellow;
 }
 
-header h1 {
-}
-
 main {
   max-width: 500px;
   margin: 2rem auto;
