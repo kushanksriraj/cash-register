@@ -1,16 +1,83 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Cash Regsiter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
 
-<head>
-	<title>Parcel Sandbox</title>
-	<meta charset="UTF-8" />
-</head>
+  <body>
+    <header>
+      <h1>Cash Regsiter</h1>
+    </header>
 
-<body>
-	<div id="app"></div>
+    <main>
+      <div class="main-head">
+        Available currencies: ₹1, ₹5, ₹10, ₹20, ₹100, ₹500, ₹2000
+      </div>
 
-	<script src="src/index.js">
-	</script>
-</body>
+      <div class="input-div">
+        <span class="input-prompt">Enter bill amount :</span>
+        <input type="Number" id="bill" placeholder="Rs." />
+      </div>
 
+      <button id="continue" style="display: inherit;">Continue</button>
+
+      <div class="input-div" id="cash-div" style="display: none;">
+        <span class="input-prompt">Enter cash given :</span>
+        <input type="Number" id="cash" placeholder="Rs." />
+      </div>
+
+      <button id="compute" style="display: none;">Compute</button>
+
+      <div class="output1" id="output-div" style="display: none;">
+        <div class="title">
+          <span>Money to return:</span>
+          <div class="money-show" id="money"></div>
+        </div>
+
+        <div class="denomination">
+          Notes of the following denomination to return:
+        </div>
+
+        <div class="notes" style="display: none;" id="note2000">
+          <div id="note-val-2000"></div>
+          <span>₹2000</span>
+        </div>
+
+        <div class="notes" style="display: none;" id="note500">
+          <div id="note-val-500"></div>
+          <span>₹500</span>
+        </div>
+
+        <div class="notes" style="display: none;" id="note100">
+          <div id="note-val-100"></div>
+          <span>₹100</span>
+        </div>
+
+        <div class="notes" style="display: none;" id="note20">
+          <div id="note-val-20"></div>
+          <span>₹20</span>
+        </div>
+
+        <div class="notes" style="display: none;" id="note10">
+          <div id="note-val-10"></div>
+          <span>₹10</span>
+        </div>
+
+        <div class="notes" style="display: none;" id="note5">
+          <div id="note-val-5"></div>
+          <span>₹5</span>
+        </div>
+
+        <div class="notes" style="display: none;" id="note1">
+          <div id="note-val-1"></div>
+          <span>₹1</span>
+        </div>
+      </div>
+    </main>
+
+    <script src="src/index.js"></script>
+  </body>
 </html>
