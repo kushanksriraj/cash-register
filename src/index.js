@@ -5,35 +5,43 @@ const computeBtn = document.querySelector("#compute");
 const cashRef = document.querySelector("#cash");
 const moneyRef = document.querySelector("#money");
 const resetBtn = document.querySelector("#reset");
+const outputDiv = document.querySelector("#output-div");
 
-var bill = 0;
-var cash = 0;
-var money = 0;
+let bill = 0;
+let cash = 0;
+let money = 0;
 
-var notes = [2000, 500, 100, 20, 10, 5, 1];
-var noteCtr = [0, 0, 0, 0, 0, 0, 0];
+let notes = [2000, 500, 100, 20, 10, 5, 1];
+let noteCtr = [0, 0, 0, 0, 0, 0, 0];
+
+function setDisplay(listOfRef, value) {
+  listOfRef.forEach((ref) => {
+    ref.style.display = value;
+  });
+}
 
 function showNotes(noteCtr) {
-  document.querySelector("#output-div").style.display = "inherit";
+  setDisplay([outputDiv], "inherit");
 
-  for (var i = 0; i < 7; i++) {
-    if (noteCtr[i] > 0) {
-      var block = document.querySelector("#note" + notes[i]);
-      block.style.display = "inherit";
-      document.querySelector("#note-val-" + notes[i]).innerText =
-        noteCtr[i] + "x";
-      noteCtr[i] = 0;
+  notes.forEach((note, index) => {
+    if (noteCtr[index] > 0) {
+      let block = document.querySelector("#note" + note);
+      setDisplay([block], "inherit");
+      document.querySelector("#note-val-" + note).innerText =
+        noteCtr[index] + "x";
+      noteCtr[index] = 0;
     } else {
-      document.querySelector("#note" + notes[i]).style.display = "none";
+      let block = document.querySelector("#note" + note);
+      setDisplay([block], "none");
     }
-  }
+  });
 }
 
 function compute(bill, cash) {
   money = cash - bill;
-  var showMoney = money;
+  let showMoney = money;
 
-  for (var i = 0; i < 7 && money > 0; i++) {
+  for (let i = 0; i < 7 && money > 0; i++) {
     while (money >= notes[i]) {
       money -= notes[i];
       noteCtr[i]++;
@@ -54,10 +62,8 @@ function billClickHandler() {
   if (bill <= 0) {
     alert("Please enter correct bill amount!");
   } else {
-    cashDivRef.style.display = "inherit";
-    computeBtn.style.display = "inherit";
-    continueBtnRef.style.display = "none";
-    resetBtn.style.display = "inherit";
+    setDisplay([cashDivRef, computeBtn, resetBtn], "inherit");
+    setDisplay([continueBtnRef], "none");
   }
 }
 
@@ -68,11 +74,9 @@ function cashClickHandler() {
 }
 
 function resetClickHandler() {
-  document.querySelector("#output-div").style.display = "none";
-  computeBtn.style.display = "none";
-  cashDivRef.style.display = "none";
-  resetBtn.style.display = "none";
-  continueBtnRef.style.display = "inherit";
+  setDisplay([computeBtn, cashDivRef, resetBtn, outputDiv], "none");
+
+  setDisplay([continueBtnRef], "inherit");
   billRef.value = "";
   cashRef.value = "";
 }
